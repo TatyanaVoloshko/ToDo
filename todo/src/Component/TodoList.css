@@ -16,12 +16,19 @@
 
 
 li {
+    display: flex;
+    align-items: end;
     width: 100%;
     margin-bottom: 5px;
 }
 
-a {
-    margin-left: 5px;
+.Remove-btn {
+   margin-left: 5px;
+    background-color: transparent;
+    border: 0;
+    color: rgb(132 69 225);
+    text-decoration: underline;
+    font-weight: 600;
 }
 
 .Input {

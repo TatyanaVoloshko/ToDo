@@ -26,16 +26,17 @@ export default class TodoList extends Component {
         <ul>
           {this.state.tasks.map((task, index) => (
             <li key={index}>
-              {task}
-
-              <a
-                href="#"
+              <div>
+                <strong>{task.title}</strong>: {task.description}
+              </div>
+              <button
+                className="Remove-btn"
                 onClick={(event) => {
                   this.removeTask(event, index);
                 }}
               >
                 Done
-              </a>
+              </button>
             </li>
           ))}
         </ul>
@@ -50,15 +51,19 @@ export default class TodoList extends Component {
   handleChangeTextarea = (e) => {
     this.setState({ textareaValue: e.target.value });
   };
+
   addTask = () => {
-    if (this.state.inputValue.trim() !== "" && this.state.textareaValue.trim() !=='') {
+    if (
+      this.state.inputValue.trim() !== "" &&
+      this.state.textareaValue.trim() !== ""
+    ) {
+      const newTask = {
+        title: this.state.inputValue,
+        description: this.state.textareaValue,
+      };
+
       this.setState((prevState) => ({
-        tasks: [
-          ...prevState.tasks,
-          prevState.inputValue +
-            ": " +
-            prevState.textareaValue,
-        ],
+        tasks: [...prevState.tasks, newTask],
         inputValue: "",
         textareaValue: "",
       }));
@@ -72,4 +77,3 @@ export default class TodoList extends Component {
     }));
   };
 }
-
